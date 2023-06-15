@@ -20,64 +20,64 @@ Name: Purge Cache
 Function: Adds Purge Cahce button to the WordPress dashboard 
 */
 
-add_action( 'admin_bar_menu', 'add_purge_cache_button', 999 );
+    add_action( 'admin_bar_menu', 'add_purge_cache_button', 999 );
 
-function add_purge_cache_button( $wp_admin_bar ) {
-    if ( ! current_user_can( 'manage_options' ) ) {
-        return;
+    function add_purge_cache_button( $wp_admin_bar ) {
+     if ( ! current_user_can( 'manage_options' ) ) {
+          return;
+     }
+
+      $args = array(
+         'id'    => 'purge-cache',
+         'title' => 'Purge Cache',
+            'href'  => '#',
+         'meta'  => array( 'class' => 'purge-cache' )
+        );
+     $wp_admin_bar->add_node( $args );
     }
 
-    $args = array(
-        'id'    => 'purge-cache',
-        'title' => 'Purge Cache',
-        'href'  => '#',
-        'meta'  => array( 'class' => 'purge-cache' )
-    );
-    $wp_admin_bar->add_node( $args );
-}
+    add_action( 'admin_footer', 'add_purge_cache_script' );
 
-add_action( 'admin_footer', 'add_purge_cache_script' );
-
-function add_purge_cache_script() {
-    if ( ! current_user_can( 'manage_options' ) ) {
-        return;
-    }
-    ?>
-    <script>
-    jQuery(document).ready(function($) {
-        $('#wp-admin-bar-purge-cache').click(function() {
-            if (confirm('Are you sure you want to purge the cache?')) {
-                $.ajax({
-                    url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-                    data: {
-                        action: 'purge_cache',
-                    },
-                    success: function() {
-                        alert('Cache purged successfully!');
-                    },
-                    error: function() {
-                        alert('An error occurred while purging the cache.');
-                    }
-                });
-            }
-        });
-    });
-    </script>
-    <?php
-}
-
-add_action( 'wp_ajax_purge_cache', 'purge_cache_callback' );
-
-function purge_cache_callback() {
-    global $wp_object_cache;
-    if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die();
+    function add_purge_cache_script() {
+     if ( ! current_user_can( 'manage_options' ) ) {
+         return;
+     }
+     ?>
+     <script>
+        jQuery(document).ready(function($) {
+          $('#wp-admin-bar-purge-cache').click(function() {
+             if (confirm('Are you sure you want to purge the cache?')) {
+                  $.ajax({
+                     url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
+                      data: {
+                          action: 'purge_cache',
+                      },
+                     success: function() {
+                         alert('Cache purged successfully!');
+                        },
+                     error: function() {
+                            alert('An error occurred while purging the cache.');
+                      }
+                 });
+             }
+         });
+     });
+     </script>
+     <?php
     }
 
-    wp_cache_flush();
+    add_action( 'wp_ajax_purge_cache', 'purge_cache_callback' );
 
-    wp_die();
-}
+    function purge_cache_callback() {
+        global $wp_object_cache;
+      if ( ! current_user_can( 'manage_options' ) ) {
+         wp_die();
+     }
+
+     wp_cache_flush();
+
+      wp_die();
+    }
 
 
 Code Explanation
