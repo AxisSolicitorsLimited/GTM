@@ -81,7 +81,6 @@ Purge Cache WordPress
 
 
 Code Explanation
-
 The plugin code consists of four parts:
 
 The plugin header that defines the plugin name and description.
