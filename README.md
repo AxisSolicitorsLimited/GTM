@@ -15,10 +15,10 @@ If the cache is purged successfully, you will see an alert message. If an error 
 Code:
 Purge Cache WordPress
 
-/*
-Name: Purge Cache
-Function: Adds Purge Cahce button to the WordPress dashboard 
-*/
+    /*
+    Name: Purge Cache
+    Function: Adds Purge Cahce button to the WordPress dashboard 
+    */
 
     add_action( 'admin_bar_menu', 'add_purge_cache_button', 999 );
 
