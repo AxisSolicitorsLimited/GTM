@@ -1,4 +1,4 @@
-# Purge Cache WordPress Tested on https://axis.lawyer/
+# Purge Cache WordPress - Tested on https://axis.lawyer/
 Purge Cache WordPress PHP - No Plugin
 
 Purge Cache Plugin
