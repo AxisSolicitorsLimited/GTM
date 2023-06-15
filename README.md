@@ -81,8 +81,13 @@ Purge Cache WordPress
 
 
 Code Explanation
+
 The plugin code consists of four parts:
+
 Firstly, the plugin header that defines the plugin name and description.
+
 Secondly, the function that adds the ‘Purge Cache’ button to the admin bar menu using the admin_bar_menu hook.
+
 Thirdly, the function that adds the JavaScript code to the admin footer using the admin_footer hook and JavaScript code sends an AJAX request to the admin-ajax.php file when the button is clicked and displays an alert message based on the response.
+
 Lastly, the function that handles the AJAX request using the wp_ajax_purge_cache hook. The function checks if the current user has the manage_options capability and then calls the wp_cache_flush() function to clear the object cache. The function then terminates using the wp_die() function.
